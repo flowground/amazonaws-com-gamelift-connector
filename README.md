@@ -1,11 +1,11 @@
-# ![LOGO](logo.png) Amazon GameLift MSP Connector
+# ![LOGO](logo.png) Amazon GameLift **flow**ground Connector
 
 ## Description
 
-A generated MSP connector for the Amazon GameLift API (version 2015-10-01).
+A generated **flow**ground connector for the Amazon GameLift API (version 2015-10-01).
 
 Generated from: https://api.apis.guru/v2/specs/amazonaws.com/gamelift/2015-10-01/swagger.json<br/>
-Generated at: 2019-05-07T11:16:00+03:00
+Generated at: 2019-05-07T17:35:40+03:00
 
 ## API Description
 
@@ -903,7 +903,7 @@ Supported authorization schemes:
 
 ## License
 
-flowground :- Telekom iPaaS / amazonaws-com-gamelift-connector<br/>
+**flow**ground :- Telekom iPaaS / amazonaws-com-gamelift-connector<br/>
 Copyright © 2019, [Deutsche Telekom AG](https://www.telekom.de)<br/>
 contact: flowground@telekom.de
 
