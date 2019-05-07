@@ -1,0 +1,122 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input for a request action.",
+            "properties": {
+                "AliasId": {
+                    "description": "Unique identifier for an alias associated with the fleet to create a game session in. Each request must reference either a fleet ID or alias ID, but not both.",
+                    "pattern": "^alias-\\S+",
+                    "type": "string"
+                },
+                "CreatorId": {
+                    "description": "Unique identifier for a player or entity creating the game session. This ID is used to enforce a resource protection policy (if one exists) that limits the number of concurrent active game sessions one player can have.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "FleetId": {
+                    "description": "Unique identifier for a fleet to create a game session in. Each request must reference either a fleet ID or alias ID, but not both.",
+                    "pattern": "^fleet-\\S+",
+                    "type": "string"
+                },
+                "GameProperties": {
+                    "description": "Set of custom properties for a game session, formatted as key:value pairs. These properties are passed to a game server process in the <a>GameSession</a> object with a request to start a new game session (see <a href=\"https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession\">Start a Game Session</a>).",
+                    "items": {
+                        "description": "Set of key-value pairs that contain information about a game session. When included in a game session request, these properties communicate details to be used when setting up the new game session, such as to specify a game mode, level, or map. Game properties are passed to the game server process when initiating a new game session; the server process uses the properties as appropriate. For more information, see the <a href=\"https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#gamelift-sdk-client-api-create\"> Amazon GameLift Developer Guide</a>.",
+                        "properties": {
+                            "Key": {
+                                "description": "Game property identifier.",
+                                "maxLength": 32,
+                                "type": "string"
+                            },
+                            "Value": {
+                                "description": "Game property value.",
+                                "maxLength": 96,
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "Key",
+                            "Value"
+                        ],
+                        "type": "object"
+                    },
+                    "maxItems": 16,
+                    "type": "array"
+                },
+                "GameSessionData": {
+                    "description": "Set of custom game session properties, formatted as a single string value. This data is passed to a game server process in the <a>GameSession</a> object with a request to start a new game session (see <a href=\"https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession\">Start a Game Session</a>).",
+                    "maxLength": 4096,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "GameSessionId": {
+                    "description": " <i>This parameter is no longer preferred. Please use <code>IdempotencyToken</code> instead.</i> Custom string that uniquely identifies a request for a new game session. Maximum token length is 48 characters. If provided, this string is included in the new game session's ID. (A game session ARN has the following format: <code>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet ID&gt;/&lt;custom ID string or idempotency token&gt;</code>.) ",
+                    "maxLength": 48,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9-]+",
+                    "type": "string"
+                },
+                "IdempotencyToken": {
+                    "description": "Custom string that uniquely identifies a request for a new game session. Maximum token length is 48 characters. If provided, this string is included in the new game session's ID. (A game session ARN has the following format: <code>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet ID&gt;/&lt;custom ID string or idempotency token&gt;</code>.) Idempotency tokens remain in use for 30 days after a game session has ended; game session objects are retained for this time period and then deleted.",
+                    "maxLength": 48,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9-]+",
+                    "type": "string"
+                },
+                "MaximumPlayerSessionCount": {
+                    "description": "Maximum number of players that can be connected simultaneously to the game session.",
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "Name": {
+                    "description": "Descriptive label that is associated with a game session. Session names do not need to be unique.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "MaximumPlayerSessionCount"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

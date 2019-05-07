@@ -1,0 +1,88 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input for a request action.",
+            "properties": {
+                "GameSessionId": {
+                    "description": "Unique identifier for the game session to add players to.",
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9:/-]+",
+                    "type": "string"
+                },
+                "PlayerDataMap": {
+                    "description": "Map of string pairs, each specifying a player ID and a set of developer-defined information related to the player. Amazon GameLift does not use this data, so it can be formatted as needed for use in the game. Player data strings for player IDs not included in the <code>PlayerIds</code> parameter are ignored. ",
+                    "items": {
+                        "properties": {
+                            "key": {
+                                "maxLength": 1024,
+                                "minLength": 1,
+                                "type": "string"
+                            },
+                            "value": {
+                                "maxLength": 2048,
+                                "minLength": 1,
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "PlayerIds": {
+                    "description": "List of unique identifiers for the players to be added.",
+                    "items": {
+                        "maxLength": 1024,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "maxItems": 25,
+                    "minItems": 1,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "GameSessionId",
+                "PlayerIds"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

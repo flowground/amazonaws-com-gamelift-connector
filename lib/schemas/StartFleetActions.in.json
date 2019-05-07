@@ -1,0 +1,67 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "Actions": {
+                    "description": "List of actions to restart on the fleet.",
+                    "items": {
+                        "enum": [
+                            "AUTO_SCALING"
+                        ],
+                        "type": "string"
+                    },
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "FleetId": {
+                    "description": "Unique identifier for a fleet",
+                    "pattern": "^fleet-\\S+",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "FleetId",
+                "Actions"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

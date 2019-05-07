@@ -1,0 +1,82 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input for a request action.",
+            "properties": {
+                "GameSessionId": {
+                    "description": "Unique identifier for the game session to retrieve player sessions for.",
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9:/-]+",
+                    "type": "string"
+                },
+                "Limit": {
+                    "description": "Maximum number of results to return. Use this parameter with <code>NextToken</code> to get results as a set of sequential pages. If a player session ID is specified, this parameter is ignored.",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "NextToken": {
+                    "description": "Token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this action. To start at the beginning of the result set, do not specify a value. If a player session ID is specified, this parameter is ignored.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "PlayerId": {
+                    "description": "Unique identifier for a player to retrieve player sessions for.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "PlayerSessionId": {
+                    "description": "Unique identifier for a player session to retrieve.",
+                    "pattern": "^psess-\\S+",
+                    "type": "string"
+                },
+                "PlayerSessionStatusFilter": {
+                    "description": "<p>Player session status to filter results on.</p> <p>Possible player session statuses include the following:</p> <ul> <li> <p> <b>RESERVED</b> -- The player session request has been received, but the player has not yet connected to the server process and/or been validated. </p> </li> <li> <p> <b>ACTIVE</b> -- The player has been validated by the server process and is currently connected.</p> </li> <li> <p> <b>COMPLETED</b> -- The player connection has been dropped.</p> </li> <li> <p> <b>TIMEDOUT</b> -- A player session request was received, but the player did not connect and/or was not validated within the timeout limit (60 seconds).</p> </li> </ul>",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

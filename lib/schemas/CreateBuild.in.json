@@ -1,0 +1,88 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input for a request action.",
+            "properties": {
+                "Name": {
+                    "description": "Descriptive label that is associated with a build. Build names do not need to be unique. You can use <a>UpdateBuild</a> to change this value later. ",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "OperatingSystem": {
+                    "description": "Operating system that the game server binaries are built to run on. This value determines the type of fleet resources that you can use for this build. If your game build contains multiple executables, they all must run on the same operating system. If an operating system is not specified when creating a build, Amazon GameLift uses the default value (WINDOWS_2012). This value cannot be changed later.",
+                    "enum": [
+                        "WINDOWS_2012",
+                        "AMAZON_LINUX"
+                    ],
+                    "type": "string"
+                },
+                "StorageLocation": {
+                    "description": "Information indicating where your game build files are stored. Use this parameter only when creating a build with files stored in an Amazon S3 bucket that you own. The storage location must specify an Amazon S3 bucket name and key, as well as a role ARN that you set up to allow Amazon GameLift to access your Amazon S3 bucket. The S3 bucket must be in the same region that you want to create a new build in.",
+                    "properties": {
+                        "Bucket": {
+                            "description": "Amazon S3 bucket identifier. This is the name of your S3 bucket.",
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "Key": {
+                            "description": "Name of the zip file containing your build files. ",
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "RoleArn": {
+                            "description": "Amazon Resource Name (<a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html\">ARN</a>) for the access role that allows Amazon GameLift to access your S3 bucket.",
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "Version": {
+                    "description": "Version that is associated with this build. Version strings do not need to be unique. You can use <a>UpdateBuild</a> to change this value later. ",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

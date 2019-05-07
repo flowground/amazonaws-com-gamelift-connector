@@ -1,0 +1,157 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input for a request action.",
+            "properties": {
+                "DesiredPlayerSessions": {
+                    "description": "Set of information on each player to create a player session for.",
+                    "items": {
+                        "description": "Player information for use when creating player sessions using a game session placement request with <a>StartGameSessionPlacement</a>.",
+                        "properties": {
+                            "PlayerData": {
+                                "description": "Developer-defined information related to a player. Amazon GameLift does not use this data, so it can be formatted as needed for use in the game.",
+                                "maxLength": 2048,
+                                "minLength": 1,
+                                "type": "string"
+                            },
+                            "PlayerId": {
+                                "description": "Unique identifier for a player to associate with the player session.",
+                                "maxLength": 1024,
+                                "minLength": 1,
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "GameProperties": {
+                    "description": "Set of custom properties for a game session, formatted as key:value pairs. These properties are passed to a game server process in the <a>GameSession</a> object with a request to start a new game session (see <a href=\"https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession\">Start a Game Session</a>).",
+                    "items": {
+                        "description": "Set of key-value pairs that contain information about a game session. When included in a game session request, these properties communicate details to be used when setting up the new game session, such as to specify a game mode, level, or map. Game properties are passed to the game server process when initiating a new game session; the server process uses the properties as appropriate. For more information, see the <a href=\"https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#gamelift-sdk-client-api-create\"> Amazon GameLift Developer Guide</a>.",
+                        "properties": {
+                            "Key": {
+                                "description": "Game property identifier.",
+                                "maxLength": 32,
+                                "type": "string"
+                            },
+                            "Value": {
+                                "description": "Game property value.",
+                                "maxLength": 96,
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "Key",
+                            "Value"
+                        ],
+                        "type": "object"
+                    },
+                    "maxItems": 16,
+                    "type": "array"
+                },
+                "GameSessionData": {
+                    "description": "Set of custom game session properties, formatted as a single string value. This data is passed to a game server process in the <a>GameSession</a> object with a request to start a new game session (see <a href=\"https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession\">Start a Game Session</a>).",
+                    "maxLength": 4096,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "GameSessionName": {
+                    "description": "Descriptive label that is associated with a game session. Session names do not need to be unique.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "GameSessionQueueName": {
+                    "description": "Name of the queue to use to place the new game session.",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9-]+",
+                    "type": "string"
+                },
+                "MaximumPlayerSessionCount": {
+                    "description": "Maximum number of players that can be connected simultaneously to the game session.",
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "PlacementId": {
+                    "description": "Unique identifier to assign to the new game session placement. This value is developer-defined. The value must be unique across all regions and cannot be reused unless you are resubmitting a canceled or timed-out placement request.",
+                    "maxLength": 48,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9-]+",
+                    "type": "string"
+                },
+                "PlayerLatencies": {
+                    "description": "Set of values, expressed in milliseconds, indicating the amount of latency that a player experiences when connected to AWS regions. This information is used to try to place the new game session where it can offer the best possible gameplay experience for the players. ",
+                    "items": {
+                        "description": "Regional latency information for a player, used when requesting a new game session with <a>StartGameSessionPlacement</a>. This value indicates the amount of time lag that exists when the player is connected to a fleet in the specified region. The relative difference between a player's latency values for multiple regions are used to determine which fleets are best suited to place a new game session for the player. ",
+                        "properties": {
+                            "LatencyInMilliseconds": {
+                                "description": "Amount of time that represents the time lag experienced by the player when connected to the specified region.",
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "PlayerId": {
+                                "description": "Unique identifier for a player associated with the latency data.",
+                                "maxLength": 1024,
+                                "minLength": 1,
+                                "type": "string"
+                            },
+                            "RegionIdentifier": {
+                                "description": "Name of the region that is associated with the latency value.",
+                                "maxLength": 1024,
+                                "minLength": 1,
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "PlacementId",
+                "GameSessionQueueName",
+                "MaximumPlayerSessionCount"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
